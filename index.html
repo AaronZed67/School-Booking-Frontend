@@ -13,6 +13,8 @@
 
     <div id="app">
 
+        <p>Items in cart: {{ cart.length }}</p>
+
         <div v-for="lesson in lessons" v-bind:key="lesson.id">
 
             <h2>{{ lesson.subject }}</h2>
@@ -26,6 +28,13 @@
             <img v-bind:src="lesson.image"
                  v-bind:alt="lesson.imageAlt"
                  width="200">
+
+            <p>
+                <button v-on:click="addToCart(lesson)"
+                        v-bind:disabled="!canAddToCart(lesson)">
+                    Add to Cart
+                </button>
+            </p>
 
             <hr>
 
@@ -43,7 +52,7 @@
                         {
                             id: 1001,
                             subject: "Maths",
-                            location: "Hendon",
+                            location: "London",
                             price: 20,
                             availability: 5,
                             image: "images/maths.jpg",
@@ -52,7 +61,7 @@
                         {
                             id: 1002,
                             subject: "English",
-                            location: "Colindale",
+                            location: "Manchester",
                             price: 18,
                             availability: 5,
                             image: "images/english.jpg",
@@ -61,7 +70,7 @@
                         {
                             id: 1003,
                             subject: "Science",
-                            location: "Brent Cross",
+                            location: "Birmingham",
                             price: 22,
                             availability: 5,
                             image: "images/science.jpg",
@@ -70,7 +79,7 @@
                         {
                             id: 1004,
                             subject: "History",
-                            location: "Hendon",
+                            location: "Liverpool",
                             price: 18,
                             availability: 5,
                             image: "images/history.jpg",
@@ -79,7 +88,7 @@
                         {
                             id: 1005,
                             subject: "Geography",
-                            location: "Colindale",
+                            location: "Bristol",
                             price: 18,
                             availability: 5,
                             image: "images/geography.jpg",
@@ -88,7 +97,7 @@
                         {
                             id: 1006,
                             subject: "Spanish",
-                            location: "Wembley",
+                            location: "Leeds",
                             price: 20,
                             availability: 5,
                             image: "images/spanish.jpg",
@@ -97,7 +106,7 @@
                         {
                             id: 1007,
                             subject: "French",
-                            location: "Hendon",
+                            location: "Oxford",
                             price: 20,
                             availability: 5,
                             image: "images/french.jpg",
@@ -106,7 +115,7 @@
                         {
                             id: 1008,
                             subject: "German",
-                            location: "Edgware",
+                            location: "Cambridge",
                             price: 20,
                             availability: 5,
                             image: "images/german.jpg",
@@ -115,7 +124,7 @@
                         {
                             id: 1009,
                             subject: "Psychology",
-                            location: "Wembley",
+                            location: "Nottingham",
                             price: 25,
                             availability: 5,
                             image: "images/psychology.jpg",
@@ -124,7 +133,7 @@
                         {
                             id: 1010,
                             subject: "Computer Science",
-                            location: "Hendon",
+                            location: "Sheffield",
                             price: 25,
                             availability: 5,
                             image: "images/computerscience.jpg",
@@ -133,7 +142,7 @@
                         {
                             id: 1011,
                             subject: "Music",
-                            location: "Colindale",
+                            location: "Brighton",
                             price: 22,
                             availability: 5,
                             image: "images/music.jpg",
@@ -142,14 +151,28 @@
                         {
                             id: 1012,
                             subject: "Art",
-                            location: "Edgware",
+                            location: "Edinburgh",
                             price: 18,
                             availability: 5,
                             image: "images/art.jpg",
                             imageAlt: "Art lesson"
                         }
-                    ]
+                    ],
+                    cart: []
                 };
+            },
+
+            methods: {
+                addToCart(lesson) {
+                    if (this.canAddToCart(lesson)) {
+                        this.cart.push(lesson.id);
+                        lesson.availability--;
+                    }
+                },
+
+                canAddToCart(lesson) {
+                    return lesson.availability > 0;
+                }
             }
         });
 
