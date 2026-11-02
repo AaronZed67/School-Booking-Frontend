@@ -12,9 +12,25 @@
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
 
     <div id="app">
-        <h2>{{ subject }}</h2>
-        <p>Location: {{ location }}</p>
-        <p>Price: £{{ price }}</p>
+
+        <div v-for="lesson in lessons" v-bind:key="lesson.id">
+
+            <h2>{{ lesson.subject }}</h2>
+
+            <p>Location: {{ lesson.location }}</p>
+
+            <p>Price: £{{ lesson.price }}</p>
+
+            <p>Spaces available: {{ lesson.availability }}</p>
+
+            <img v-bind:src="lesson.image"
+                 v-bind:alt="lesson.imageAlt"
+                 width="200">
+
+            <hr>
+
+        </div>
+
     </div>
 
     <script>
@@ -23,9 +39,116 @@
         const app = createApp({
             data() {
                 return {
-                    subject: "Maths",
-                    location: "Hendon",
-                    price: 20
+                    lessons: [
+                        {
+                            id: 1001,
+                            subject: "Maths",
+                            location: "Hendon",
+                            price: 20,
+                            availability: 5,
+                            image: "images/maths.jpg",
+                            imageAlt: "Maths lesson"
+                        },
+                        {
+                            id: 1002,
+                            subject: "English",
+                            location: "Colindale",
+                            price: 18,
+                            availability: 5,
+                            image: "images/english.jpg",
+                            imageAlt: "English lesson"
+                        },
+                        {
+                            id: 1003,
+                            subject: "Science",
+                            location: "Brent Cross",
+                            price: 22,
+                            availability: 5,
+                            image: "images/science.jpg",
+                            imageAlt: "Science lesson"
+                        },
+                        {
+                            id: 1004,
+                            subject: "History",
+                            location: "Hendon",
+                            price: 18,
+                            availability: 5,
+                            image: "images/history.jpg",
+                            imageAlt: "History lesson"
+                        },
+                        {
+                            id: 1005,
+                            subject: "Geography",
+                            location: "Colindale",
+                            price: 18,
+                            availability: 5,
+                            image: "images/geography.jpg",
+                            imageAlt: "Geography lesson"
+                        },
+                        {
+                            id: 1006,
+                            subject: "Spanish",
+                            location: "Wembley",
+                            price: 20,
+                            availability: 5,
+                            image: "images/spanish.jpg",
+                            imageAlt: "Spanish lesson"
+                        },
+                        {
+                            id: 1007,
+                            subject: "French",
+                            location: "Hendon",
+                            price: 20,
+                            availability: 5,
+                            image: "images/french.jpg",
+                            imageAlt: "French lesson"
+                        },
+                        {
+                            id: 1008,
+                            subject: "German",
+                            location: "Edgware",
+                            price: 20,
+                            availability: 5,
+                            image: "images/german.jpg",
+                            imageAlt: "German lesson"
+                        },
+                        {
+                            id: 1009,
+                            subject: "Psychology",
+                            location: "Wembley",
+                            price: 25,
+                            availability: 5,
+                            image: "images/psychology.jpg",
+                            imageAlt: "Psychology lesson"
+                        },
+                        {
+                            id: 1010,
+                            subject: "Computer Science",
+                            location: "Hendon",
+                            price: 25,
+                            availability: 5,
+                            image: "images/computerscience.jpg",
+                            imageAlt: "Computer Science lesson"
+                        },
+                        {
+                            id: 1011,
+                            subject: "Music",
+                            location: "Colindale",
+                            price: 22,
+                            availability: 5,
+                            image: "images/music.jpg",
+                            imageAlt: "Music lesson"
+                        },
+                        {
+                            id: 1012,
+                            subject: "Art",
+                            location: "Edgware",
+                            price: 18,
+                            availability: 5,
+                            image: "images/art.jpg",
+                            imageAlt: "Art lesson"
+                        }
+                    ]
                 };
             }
         });
