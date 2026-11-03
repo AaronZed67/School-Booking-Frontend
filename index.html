@@ -14,7 +14,7 @@
     <div id="app">
 
         <button v-on:click="showCart"
-                v-bind:disabled="cart.length === 0">
+                v-bind:disabled="cart.length === 0 && !displayCart">
             {{ displayCart ? "Back to Lessons" : "Shopping Cart" }}
             ({{ numberOfItems }})
         </button>
@@ -79,6 +79,32 @@
             <p>Total items: {{ numberOfItems }}</p>
 
             <p>Total price: £{{ cartTotal }}</p>
+
+            <!-- Checkout Section -->
+            <h2>Checkout</h2>
+
+            <p>
+                <label>Name:</label>
+                <input type="text"
+                       v-model="order.name"
+                       placeholder="Enter your name">
+            </p>
+
+            <p>
+                <label>Phone Number:</label>
+                <input type="text"
+                       v-model="order.phone"
+                       placeholder="Enter your phone number">
+            </p>
+
+            <p>
+                <button v-on:click="checkout"
+                        v-bind:disabled="!validOrder">
+                    Checkout
+                </button>
+            </p>
+
+            <p>{{ confirmationMessage }}</p>
 
         </div>
 
@@ -202,7 +228,14 @@
                     ],
 
                     cart: [],
-                    displayCart: false
+                    displayCart: false,
+
+                    order: {
+                        name: "",
+                        phone: ""
+                    },
+
+                    confirmationMessage: ""
                 };
             },
 
@@ -211,7 +244,7 @@
                     return this.cart.length;
                 },
 
-                cartTotal() {
+            cartTotal() {
                     let total = 0;
 
                     for (let lesson of this.lessons) {
@@ -219,18 +252,31 @@
                     }
 
                     return total;
+                },
+
+            validOrder() {
+                    const namePattern = /^[A-Za-z ]+$/;
+                    const phonePattern = /^[0-9]+$/;
+
+                    return (
+                        this.cart.length > 0 &&
+                        this.order.name.trim().length > 0 &&
+                        namePattern.test(this.order.name) &&
+                        phonePattern.test(this.order.phone
+                    );
                 }
             },
 
             methods: {
-                addToCart(lesson) {
+             addToCart(lesson) {
                     if (this.canAddToCart(lesson)) {
                         this.cart.push(lesson.id);
                         lesson.availability--;
+                        this.confirmationMessage = "";
                     }
                 },
 
-                canAddToCart(lesson) {
+            canAddToCart(lesson) {
                     return lesson.availability > 0;
                 },
 
@@ -238,7 +284,7 @@
                     this.displayCart = !this.displayCart;
                 },
 
-                cartCount(lessonId) {
+            cartCount(lessonId) {
                     let count = 0;
 
                     for (let id of this.cart) {
@@ -250,14 +296,26 @@
                     return count;
                 },
 
-                removeFromCart(lesson) {
-                    const index = this.cart.indexOf(lesson.id);
+            removeFromCart(lesson) {
+                 const index = this.cart.indexOf(lesson.id);
 
-                    if (index !== -1) {
+                if (index !== -1) {
                         this.cart.splice(index, 1);
                         lesson.availability++;
+                 }
+                },
+
+                checkout() {
+                    if (this.validOrder) {
+                        this.confirmationMessage =
+                            "Your order has been submitted successfully!";
+
+                        this.cart = [];
+
+                        this.order.name = "";
+                        this.order.phone = "";
                     }
-                }
+                
             }
         });
 
