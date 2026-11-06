@@ -1,26 +1,20 @@
 
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>School Booking Project</title>
-
- 
     <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
     <h1>After School Lessons</h1>
 
-  
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
 
     <div id="app">
 
-       
         <button v-on:click="showCart"
                 v-bind:disabled="cart.length === 0 && !displayCart">
             {{ displayCart ? "Back to Lessons" : "Shopping Cart" }}
@@ -31,7 +25,6 @@
 
             <h2>Available Lessons</h2>
 
-          
             <p>
                 <label for="sortBy">Sort by:</label>
 
@@ -52,8 +45,8 @@
                 </select>
             </p>
 
-            
-            <div v-for="lesson in sortedLessons"
+            <div class="lesson-card"
+                 v-for="lesson in sortedLessons"
                  v-bind:key="lesson.id">
 
                 <h2>{{ lesson.subject }}</h2>
@@ -64,12 +57,10 @@
 
                 <p>Spaces available: {{ lesson.availability }}</p>
 
-              
                 <img v-bind:src="lesson.image"
                      v-bind:alt="lesson.imageAlt"
                      width="200">
 
-              
                 <p>
                     <button v-on:click="addToCart(lesson)"
                             v-bind:disabled="!canAddToCart(lesson)">
@@ -83,22 +74,31 @@
 
         </div>
 
-      
         <div v-else>
 
             <h2>Shopping Cart</h2>
 
-            
+            <p v-if="cart.length === 0">
+                Your shopping cart is empty.
+            </p>
+
             <div v-for="lesson in lessons"
                  v-bind:key="lesson.id">
 
-                <div v-if="cartCount(lesson.id) > 0">
+                <div class="cart-item"
+                     v-if="cartCount(lesson.id) > 0">
 
                     <h3>{{ lesson.subject }}</h3>
+
+                    <p>Location: {{ lesson.location }}</p>
 
                     <p>Price: £{{ lesson.price }}</p>
 
                     <p>Quantity: {{ cartCount(lesson.id) }}</p>
+
+                    <p>
+                        Subtotal: £{{ lesson.price * cartCount(lesson.id) }}
+                    </p>
 
                     <button v-on:click="removeFromCart(lesson)">
                         Remove
@@ -110,15 +110,12 @@
 
             </div>
 
-            
             <p>Total items: {{ numberOfItems }}</p>
 
             <p>Total price: £{{ cartTotal }}</p>
 
-           
             <h2>Checkout</h2>
 
-           
             <p>
                 <label for="customerName">Name:</label>
 
@@ -137,7 +134,6 @@
                        placeholder="Enter your phone number">
             </p>
 
-            
             <p>
                 <button v-on:click="checkout"
                         v-bind:disabled="!validOrder">
@@ -152,22 +148,17 @@
     </div>
 
     <script>
-
-     
         const { createApp } = Vue;
 
         const app = createApp({
 
-           
             data() {
                 return {
-
-                
                     lessons: [
                         {
                             id: 1001,
                             subject: "Maths",
-                            location: "London",
+                            location: "Colindale",
                             price: 20,
                             availability: 5,
                             image: "images/maths.jpg",
@@ -176,7 +167,7 @@
                         {
                             id: 1002,
                             subject: "English",
-                            location: "Manchester",
+                            location: "Hendon",
                             price: 18,
                             availability: 5,
                             image: "images/english.jpg",
@@ -185,7 +176,7 @@
                         {
                             id: 1003,
                             subject: "Science",
-                            location: "Birmingham",
+                            location: "Edgware",
                             price: 22,
                             availability: 5,
                             image: "images/science.jpg",
@@ -194,7 +185,7 @@
                         {
                             id: 1004,
                             subject: "History",
-                            location: "Liverpool",
+                            location: "Burnt Oak",
                             price: 18,
                             availability: 5,
                             image: "images/history.jpg",
@@ -203,7 +194,7 @@
                         {
                             id: 1005,
                             subject: "Geography",
-                            location: "Bristol",
+                            location: "Kilburn",
                             price: 18,
                             availability: 5,
                             image: "images/geography.jpg",
@@ -212,7 +203,7 @@
                         {
                             id: 1006,
                             subject: "Spanish",
-                            location: "Leeds",
+                            location: "Brent Cross",
                             price: 20,
                             availability: 5,
                             image: "images/spanish.jpg",
@@ -221,7 +212,7 @@
                         {
                             id: 1007,
                             subject: "French",
-                            location: "Oxford",
+                            location: "Finchley",
                             price: 20,
                             availability: 5,
                             image: "images/french.jpg",
@@ -230,7 +221,7 @@
                         {
                             id: 1008,
                             subject: "German",
-                            location: "Cambridge",
+                            location: "Wembley",
                             price: 20,
                             availability: 5,
                             image: "images/german.jpg",
@@ -239,7 +230,7 @@
                         {
                             id: 1009,
                             subject: "Psychology",
-                            location: "Nottingham",
+                            location: "Harrow",
                             price: 25,
                             availability: 5,
                             image: "images/psychology.jpg",
@@ -248,7 +239,7 @@
                         {
                             id: 1010,
                             subject: "Computer Science",
-                            location: "Sheffield",
+                            location: "Golders Green",
                             price: 25,
                             availability: 5,
                             image: "images/computerscience.jpg",
@@ -257,7 +248,7 @@
                         {
                             id: 1011,
                             subject: "Music",
-                            location: "Brighton",
+                            location: "Hampstead",
                             price: 22,
                             availability: 5,
                             image: "images/music.jpg",
@@ -266,7 +257,7 @@
                         {
                             id: 1012,
                             subject: "Art",
-                            location: "Edinburgh",
+                            location: "Barnet",
                             price: 18,
                             availability: 5,
                             image: "images/art.jpg",
@@ -274,43 +265,33 @@
                         }
                     ],
 
-                   
                     cart: [],
 
-               
                     displayCart: false,
 
-                    
                     order: {
                         name: "",
                         phone: ""
                     },
 
-                    
                     confirmationMessage: "",
 
-                   
                     sortBy: "subject",
                     sortOrder: "ascending"
 
                 };
             },
 
-            
             computed: {
 
-               
                 sortedLessons() {
 
-                  
                     let sorted = this.lessons.slice();
 
-                    
                     sorted.sort((a, b) => {
 
                         let result = 0;
 
-                       
                         if (this.sortBy === "subject" ||
                             this.sortBy === "location") {
 
@@ -320,12 +301,10 @@
 
                         } else {
 
-                         
                             result = a[this.sortBy] - b[this.sortBy];
 
                         }
 
-                       
                         if (this.sortOrder === "descending") {
                             result = result * -1;
                         }
@@ -334,17 +313,13 @@
 
                     });
 
-                   
                     return sorted;
-
                 },
 
-               
                 numberOfItems() {
                     return this.cart.length;
                 },
 
-              
                 cartTotal() {
 
                     let total = 0;
@@ -356,13 +331,9 @@
                     return total;
                 },
 
-                
                 validOrder() {
 
-                   
                     const namePattern = /^[A-Za-z ]+$/;
-
-                    
                     const phonePattern = /^[0-9]+$/;
 
                     return (
@@ -375,10 +346,8 @@
 
             },
 
-           
             methods: {
 
-                
                 addToCart(lesson) {
 
                     if (this.canAddToCart(lesson)) {
@@ -391,17 +360,14 @@
                     }
                 },
 
-               
                 canAddToCart(lesson) {
                     return lesson.availability > 0;
                 },
 
-                
                 showCart() {
                     this.displayCart = !this.displayCart;
                 },
 
-               
                 cartCount(lessonId) {
 
                     let count = 0;
@@ -417,7 +383,6 @@
                     return count;
                 },
 
-               
                 removeFromCart(lesson) {
 
                     const index = this.cart.indexOf(lesson.id);
@@ -426,17 +391,16 @@
 
                         this.cart.splice(index, 1);
 
-                       
+                        lesson.availability++;
                     }
                 },
 
-               
                 checkout() {
 
                     if (this.validOrder) {
 
                         this.confirmationMessage =
-                            "Your order has been submitted successfully!";
+                            "Your checkout has been completed locally!";
 
                         this.cart = [];
 
@@ -449,9 +413,7 @@
 
         });
 
-     
         app.mount("#app");
-
     </script>
 
 </body>
