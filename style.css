@@ -1,9 +1,7 @@
 
-
 * {
     box-sizing: border-box;
 }
-
 
 body {
     font-family: Arial, sans-serif;
@@ -14,9 +12,6 @@ body {
     line-height: 1.6;
 }
 
-
-
-
 h1 {
     background-color: #14263e;
     color: white;
@@ -26,12 +21,76 @@ h1 {
     font-size: 32px;
 }
 
-
-
 #app {
     max-width: 1100px;
     margin: 30px auto;
     padding: 0 20px;
+}
+
+h2 {
+    color: #14263e;
+    font-size: 25px;
+    margin-top: 20px;
+    margin-bottom: 15px;
+}
+
+h3 {
+    color: #243247;
+    font-size: 20px;
+    margin-top: 10px;
+}
+
+p {
+    margin: 10px 0;
+}
+
+.lesson-card {
+    background-color: white;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 25px;
+    margin: 25px 0;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.lesson-card:hover {
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.10);
+}
+
+.lesson-card h2 {
+    margin-top: 0;
+    margin-bottom: 12px;
+}
+
+.lesson-card p {
+    margin: 8px 0;
+}
+
+.lesson-card img {
+    width: 100%;
+    max-width: 300px;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 8px;
+    display: block;
+    margin: 15px 0;
+}
+
+.lesson-card hr {
+    display: none;
+}
+
+button {
+    background-color: #2876db;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 12px 20px;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    margin: 5px 5px 5px 0;
+    transition: background-color 0.2s ease;
 }
 
 
