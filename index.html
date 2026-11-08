@@ -4,12 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>School Booking Project</title>
+    <title>St James High School - After School Lessons</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <h1>After School Lessons</h1>
+    <h1>St James - After School Lessons</h1>
 
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
 
@@ -53,6 +53,10 @@
 
                 <p>Location: {{ lesson.location }}</p>
 
+                <p>Day: Every {{ lesson.day }}</p>
+
+                <p>Time: {{ lesson.time }}</p>
+
                 <p>Price: £{{ lesson.price }}</p>
 
                 <p>Spaces available: {{ lesson.availability }}</p>
@@ -91,6 +95,10 @@
                     <h3>{{ lesson.subject }}</h3>
 
                     <p>Location: {{ lesson.location }}</p>
+
+                    <p>Day: Every {{ lesson.day }}</p>
+
+                    <p>Time: {{ lesson.time }}</p>
 
                     <p>Price: £{{ lesson.price }}</p>
 
@@ -158,7 +166,9 @@
                         {
                             id: 1001,
                             subject: "Maths",
-                            location: "Colindale",
+                            location: "St James High School - Maths Room 5",
+                            day: "Monday",
+                            time: "4:00 PM - 5:00 PM",
                             price: 20,
                             availability: 5,
                             image: "images/maths.jpg",
@@ -167,7 +177,9 @@
                         {
                             id: 1002,
                             subject: "English",
-                            location: "Hendon",
+                            location: "St James High School - English Room 6",
+                            day: "Tuesday",
+                            time: "4:00 PM - 5:00 PM",
                             price: 18,
                             availability: 5,
                             image: "images/english.jpg",
@@ -176,7 +188,9 @@
                         {
                             id: 1003,
                             subject: "Science",
-                            location: "Edgware",
+                            location: "St James High School - Science Lab 3",
+                            day: "Wednesday",
+                            time: "4:00 PM - 5:00 PM",
                             price: 22,
                             availability: 5,
                             image: "images/science.jpg",
@@ -185,7 +199,9 @@
                         {
                             id: 1004,
                             subject: "History",
-                            location: "Burnt Oak",
+                            location: "St James High School - History Room 3",
+                            day: "Thursday",
+                            time: "4:00 PM - 5:00 PM",
                             price: 18,
                             availability: 5,
                             image: "images/history.jpg",
@@ -194,7 +210,9 @@
                         {
                             id: 1005,
                             subject: "Geography",
-                            location: "Kilburn",
+                            location: "St James High School - Geography Room 4",
+                            day: "Friday",
+                            time: "4:00 PM - 5:00 PM",
                             price: 18,
                             availability: 5,
                             image: "images/geography.jpg",
@@ -203,7 +221,9 @@
                         {
                             id: 1006,
                             subject: "Spanish",
-                            location: "Brent Cross",
+                            location: "St James High School - Languages Room 2",
+                            day: "Monday",
+                            time: "5:00 PM - 6:00 PM",
                             price: 20,
                             availability: 5,
                             image: "images/spanish.jpg",
@@ -212,7 +232,9 @@
                         {
                             id: 1007,
                             subject: "French",
-                            location: "Finchley",
+                            location: "St James High School - Languages Room 4",
+                            day: "Tuesday",
+                            time: "5:00 PM - 6:00 PM",
                             price: 20,
                             availability: 5,
                             image: "images/french.jpg",
@@ -221,7 +243,9 @@
                         {
                             id: 1008,
                             subject: "German",
-                            location: "Wembley",
+                            location: "St James High School - Languages Room 2",
+                            day: "Wednesday",
+                            time: "5:00 PM - 6:00 PM",
                             price: 20,
                             availability: 5,
                             image: "images/german.jpg",
@@ -230,7 +254,9 @@
                         {
                             id: 1009,
                             subject: "Psychology",
-                            location: "Harrow",
+                            location: "St James High School - Psychology Room 7",
+                            day: "Thursday",
+                            time: "5:00 PM - 6:00 PM",
                             price: 25,
                             availability: 5,
                             image: "images/psychology.jpg",
@@ -239,7 +265,9 @@
                         {
                             id: 1010,
                             subject: "Computer Science",
-                            location: "Golders Green",
+                            location: "St James High School - Computer Lab 3",
+                            day: "Friday",
+                            time: "5:00 PM - 6:00 PM",
                             price: 25,
                             availability: 5,
                             image: "images/computerscience.jpg",
@@ -248,7 +276,9 @@
                         {
                             id: 1011,
                             subject: "Music",
-                            location: "Hampstead",
+                            location: "St James High School - Studio 1",
+                            day: "Wednesday",
+                            time: "4:00 PM - 5:00 PM",
                             price: 22,
                             availability: 5,
                             image: "images/music.jpg",
@@ -257,7 +287,9 @@
                         {
                             id: 1012,
                             subject: "Art",
-                            location: "Barnet",
+                            location: "St James High School - Art Room 2",
+                            day: "Friday",
+                            time: "4:00 PM - 5:00 PM",
                             price: 18,
                             availability: 5,
                             image: "images/art.jpg",
@@ -418,3 +450,6 @@
 
 </body>
 </html>
+
+
+
