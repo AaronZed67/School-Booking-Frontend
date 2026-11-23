@@ -162,140 +162,7 @@
 
             data() {
                 return {
-                    lessons: [
-                        {
-                            id: 1001,
-                            subject: "Maths",
-                            location: "St James High School - Maths Room 5",
-                            day: "Monday",
-                            time: "4:00 PM - 5:00 PM",
-                            price: 20,
-                            availability: 5,
-                            image: "images/maths.jpg",
-                            imageAlt: "Maths lesson"
-                        },
-                        {
-                            id: 1002,
-                            subject: "English",
-                            location: "St James High School - English Room 6",
-                            day: "Tuesday",
-                            time: "4:00 PM - 5:00 PM",
-                            price: 18,
-                            availability: 5,
-                            image: "images/english.jpg",
-                            imageAlt: "English lesson"
-                        },
-                        {
-                            id: 1003,
-                            subject: "Science",
-                            location: "St James High School - Science Lab 3",
-                            day: "Wednesday",
-                            time: "4:00 PM - 5:00 PM",
-                            price: 22,
-                            availability: 5,
-                            image: "images/science.jpg",
-                            imageAlt: "Science lesson"
-                        },
-                        {
-                            id: 1004,
-                            subject: "History",
-                            location: "St James High School - History Room 3",
-                            day: "Thursday",
-                            time: "4:00 PM - 5:00 PM",
-                            price: 18,
-                            availability: 5,
-                            image: "images/history.jpg",
-                            imageAlt: "History lesson"
-                        },
-                        {
-                            id: 1005,
-                            subject: "Geography",
-                            location: "St James High School - Geography Room 4",
-                            day: "Friday",
-                            time: "4:00 PM - 5:00 PM",
-                            price: 18,
-                            availability: 5,
-                            image: "images/geography.jpg",
-                            imageAlt: "Geography lesson"
-                        },
-                        {
-                            id: 1006,
-                            subject: "Spanish",
-                            location: "St James High School - Languages Room 2",
-                            day: "Monday",
-                            time: "5:00 PM - 6:00 PM",
-                            price: 20,
-                            availability: 5,
-                            image: "images/spanish.jpg",
-                            imageAlt: "Spanish lesson"
-                        },
-                        {
-                            id: 1007,
-                            subject: "French",
-                            location: "St James High School - Languages Room 4",
-                            day: "Tuesday",
-                            time: "5:00 PM - 6:00 PM",
-                            price: 20,
-                            availability: 5,
-                            image: "images/french.jpg",
-                            imageAlt: "French lesson"
-                        },
-                        {
-                            id: 1008,
-                            subject: "German",
-                            location: "St James High School - Languages Room 2",
-                            day: "Wednesday",
-                            time: "5:00 PM - 6:00 PM",
-                            price: 20,
-                            availability: 5,
-                            image: "images/german.jpg",
-                            imageAlt: "German lesson"
-                        },
-                        {
-                            id: 1009,
-                            subject: "Psychology",
-                            location: "St James High School - Psychology Room 7",
-                            day: "Thursday",
-                            time: "5:00 PM - 6:00 PM",
-                            price: 25,
-                            availability: 5,
-                            image: "images/psychology.jpg",
-                            imageAlt: "Psychology lesson"
-                        },
-                        {
-                            id: 1010,
-                            subject: "Computer Science",
-                            location: "St James High School - Computer Lab 3",
-                            day: "Friday",
-                            time: "5:00 PM - 6:00 PM",
-                            price: 25,
-                            availability: 5,
-                            image: "images/computerscience.jpg",
-                            imageAlt: "Computer Science lesson"
-                        },
-                        {
-                            id: 1011,
-                            subject: "Music",
-                            location: "St James High School - Studio 1",
-                            day: "Wednesday",
-                            time: "4:00 PM - 5:00 PM",
-                            price: 22,
-                            availability: 5,
-                            image: "images/music.jpg",
-                            imageAlt: "Music lesson"
-                        },
-                        {
-                            id: 1012,
-                            subject: "Art",
-                            location: "St James High School - Art Room 2",
-                            day: "Friday",
-                            time: "4:00 PM - 5:00 PM",
-                            price: 18,
-                            availability: 5,
-                            image: "images/art.jpg",
-                            imageAlt: "Art lesson"
-                        }
-                    ],
+                    lessons: [],
 
                     cart: [],
 
@@ -312,6 +179,10 @@
                     sortOrder: "ascending"
 
                 };
+            },
+
+            created() {
+                this.fetchData();
             },
 
             computed: {
@@ -379,6 +250,12 @@
             },
 
             methods: {
+
+                async fetchData() {
+                    const url = "http://localhost:3000/lessons";
+                    let response = await fetch(url);
+                    this.lessons = await response.json();
+                },
 
                 addToCart(lesson) {
 
@@ -450,6 +327,3 @@
 
 </body>
 </html>
-
-
-
