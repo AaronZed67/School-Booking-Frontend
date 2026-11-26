@@ -1,112 +1,31 @@
 
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f2f2f2;
-    color: #333333;
-    margin: 0;
-}
-
 h1 {
-    background-color: #243b55;
+    background-color: #000000;
     color: white;
-    text-align: center;
-    padding: 25px;
-    margin: 0;
-}
-
-#app {
-    max-width: 1000px;
-    margin: 20px auto;
-    padding: 15px;
-}
-
-h2 {
-    color: #243b55;
-}
-
-h3 {
-    color: #243b55;
-}
-
-.lesson-card {
-    background-color: white;
-    border: 1px solid #cccccc;
     padding: 20px;
-    margin-bottom: 20px;
-    border-radius: 8px;
 }
 
-.lesson-card img {
-    width: 200px;
-    height: 150px;
-    object-fit: cover;
-    border-radius: 5px;
-}
 
 button {
-    background-color: #2876db;
-    color: white;
-    border: none;
-    padding: 10px 15px;
-    margin-top: 10px;
+    background-color: #ffffff;
+    color: rgb(0, 0, 0);
+    border: 1px solid black;
+    padding: 7px;
     cursor: pointer;
-    border-radius: 5px;
+    border-radius: 15px;
 }
 
 button:hover {
-    background-color: #1859ac;
+    background-color: #aaaaaa;
+    color: rgb(0, 0, 0);
 }
 
 button:disabled {
-    background-color: #aaaaaa;
+    background-color: #aaa;
     cursor: not-allowed;
 }
 
-select {
+input, select {
     padding: 8px;
     margin: 5px;
-    border: 1px solid #cccccc;
-}
-
-input {
-    padding: 8px;
-    margin: 5px;
-    border: 1px solid #cccccc;
-}
-
-label {
-    font-weight: bold;
-}
-
-.cart-item {
-    background-color: white;
-    border: 1px solid #cccccc;
-    padding: 15px;
-    margin-bottom: 15px;
-    border-radius: 8px;
-}
-
-.cart-item button {
-    background-color: #cc3333;
-}
-
-.cart-item button:hover {
-    background-color: #992222;
-}
-
-hr {
-    border: none;
-    border-top: 1px solid #dddddd;
-    margin-top: 20px;
-}
-
-@media (max-width: 600px) {
-    #app {
-        padding: 10px;
-    }
-
-    .lesson-card img {
-        max-width: 100%;
-        height: auto;
-    }
 }

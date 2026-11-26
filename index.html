@@ -304,17 +304,51 @@
                     }
                 },
 
-                checkout() {
+                async checkout() {
 
                     if (this.validOrder) {
 
-                        this.confirmationMessage =
-                            "Your checkout has been completed locally!";
+                        const newOrder = {
+                            name: this.order.name,
+                            phone: this.order.phone,
+                            lessonIDs: this.cart.slice(),
+                            numberOfSpaces: this.cart.length
+                        };
 
-                        this.cart = [];
+                        const url = "http://localhost:3000/orders";
 
-                        this.order.name = "";
-                        this.order.phone = "";
+                        const options = {
+                            method: "POST",
+                            headers: {
+                                "Content-Type": "application/json"
+                            },
+                            body: JSON.stringify(newOrder)
+                        };
+
+                        try {
+                            const response = await fetch(url, options);
+
+                            if (response.ok) {
+
+                                this.confirmationMessage =
+                                    "Your order has been submitted! You will recive a text confirming this on your number.";
+
+                                this.cart = [];
+
+                                this.order.name = "";
+                                this.order.phone = "";
+
+                            } else {
+
+                                this.confirmationMessage =
+                                    "Sorry We could not save your order.";
+                            }
+
+                        } catch (error) {
+
+                            this.confirmationMessage =
+                                "Sorry we could not connect to the server.";
+                        }
                     }
                 }
 
