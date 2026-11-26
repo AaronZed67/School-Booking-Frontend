@@ -257,6 +257,27 @@
                     this.lessons = await response.json();
                 },
 
+                async updateLesson(lesson) {
+
+                    const url = "http://localhost:3000/lessons/" + lesson._id;
+
+                    const options = {
+                        method: "PUT",
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
+                        body: JSON.stringify({
+                            availability: lesson.availability
+                        })
+                    };
+
+                    const response = await fetch(url, options);
+
+                    if (!response.ok) {
+                        throw new Error("Could not update availability");
+                    }
+                },
+
                 addToCart(lesson) {
 
                     if (this.canAddToCart(lesson)) {
@@ -325,30 +346,48 @@
                             body: JSON.stringify(newOrder)
                         };
 
+                        let orderSaved = false;
+
                         try {
+
                             const response = await fetch(url, options);
 
-                            if (response.ok) {
+                            if (!response.ok) {
+                                throw new Error("Could not save order");
+                            }
+
+                            orderSaved = true;
+
+                            for (let lesson of this.lessons) {
+
+                                if (this.cart.includes(lesson.id)) {
+                                    await this.updateLesson(lesson);
+                                }
+                            }
+
+                            this.confirmationMessage =
+                                "Your order has been submitted successfully!";
+
+                        } catch (error) {
+
+                            if (orderSaved) {
 
                                 this.confirmationMessage =
-                                    "Your order has been submitted! You will recive a text confirming this on your number.";
-
-                                this.cart = [];
-
-                                this.order.name = "";
-                                this.order.phone = "";
+                                    "Order saved, but availability could not be fully updated.";
 
                             } else {
 
                                 this.confirmationMessage =
-                                    "Sorry We could not save your order.";
+                                    "Sorry, we could not save your order.";
+
+                                return;
                             }
-
-                        } catch (error) {
-
-                            this.confirmationMessage =
-                                "Sorry we could not connect to the server.";
                         }
+
+                        this.cart = [];
+
+                        this.order.name = "";
+                        this.order.phone = "";
                     }
                 }
 
